@@ -2,7 +2,7 @@
 
 Import DB in MySQL
 
-Add in connection.php your user and password for your database.
+Add in connection.php your user and password for your database on the service/connection.php file
 
 The app is at the root of /client folder or /client/index.php
 
