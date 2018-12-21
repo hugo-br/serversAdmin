@@ -17,7 +17,8 @@ session_start();
 require('../service/encrypted.php');
 $action =  $_POST['action'];
 $apiKey = "123456"; // validate api for do a service request
-$url = 'http://localhost/soa/service/web-service.wsdl';
+//$url = 'http://localhost/soa/service/web-service.wsdl';
+$url = '../service/web-service.wsdl';
 ini_set("soap.wsdl_cache_enabled", "0"); // disabling WSDL cache
 
 class requestLookupAuth 
