@@ -1,0 +1,179 @@
+<?xml version ='1.0' encoding ='UTF-8' ?>
+
+<definitions name='ServerLookup'
+
+  targetNamespace='http://example.org/ServerLookup'
+
+  xmlns:tns='ServerLookup'
+
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+
+  xmlns='http://schemas.xmlsoap.org/wsdl/'
+ 
+ xmlns:wsp="http://www.w3.org/ns/ws-policy"
+ xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+ xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
+ xmlns:sp13="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200802"
+ xmlns:wsaws="http://www.w3.org/2005/08/addressing" >
+
+
+
+
+  
+  
+<message name='APIValidateRequest'>
+ <part name='apiKey' type='xsd:string'/>
+</message>
+<message name='APIValidateResponse'>
+ <part name='response' type='xsd:string'/>
+</message>
+
+
+<message name='getAllServersRequest'>
+ <part name='getServers' type='xsd:string'/>
+</message>
+<message name='getAllServersResponse'>
+  <part name='sendServers' type='xsd:string'/>
+</message>
+
+
+<message name='setOneServerRequest'>
+  <part name='name' type='xsd:string'/>
+  <part name='location' type='xsd:string'/>
+  <part name='type' type='xsd:string'/>
+</message>
+<message name='setOneServerResponse'>
+  <part name='oneserver' type='xsd:string'/>
+</message>
+
+
+<message name='checkUserRequest'>
+<part name='username' type='xsd:string'/>
+<part name='password' type='xsd:string'/>
+</message>
+<message name='checkUserResponse'>
+<part name='reponse' type='xsd:string'/>
+</message>
+
+
+<message name='editServerRequest'>
+<part name='id' type='xsd:number'/>
+<part name='name' type='xsd:string'/>
+<part name='location' type='xsd:string'/>
+<part name='type' type='xsd:string'/>
+</message>
+<message name='editServerResponse'>
+<part name='reponse' type='xsd:string'/>
+</message>
+
+
+<portType name='ServerLookupPortType'>
+
+    <operation name='APIValidate'>
+      <input message='tns:APIValidateRequest'/>
+      <output message='tns:APIValidateResponse'/>
+    </operation>
+	
+    <operation name='getAllServers'>
+      <input message='tns:getAllServersRequest'/>
+      <output message='tns:getAllServersResponse'/>
+    </operation>	
+	
+    <operation name='setOneServer'>
+      <input message='tns:setOneServerRequest'/>
+      <output message='tns:setOneServerResponse'/>
+    </operation>		
+	
+    <operation name='checkUser'>
+      <input message='tns:checkUserRequest'/>
+      <output message='tns:checkUserResponse'/>
+    </operation>
+
+    <operation name='editServer'>
+      <input message='tns:editServerRequest'/>
+      <output message='tns:editServerResponse'/>
+    </operation>
+	
+</portType>
+
+
+
+<binding name='ServerLookupBinding' type='tns:ServerLookupPortType'>
+
+  <soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/>
+
+ 
+  <operation name='getAllServers'>
+    <soap:operation soapAction='urn:ServerLookup#getAllServers'/>
+    <input>
+      <soap:body 
+	    use='encoded' 
+	    namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </input>
+    <output>
+      <soap:body 
+	    use='encoded' 
+		namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' />
+    </output>
+  </operation>   
+
+
+  <operation name='setOneServer'>
+    <soap:operation soapAction='urn:ServerLookup#setOneServer'/>
+    <input>
+      <soap:body use='encoded' namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </input>
+    <output>
+      <soap:body use='encoded' namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </output>
+  </operation>   
+  
+  
+  
+   <operation name='checkUser'>
+    <soap:operation soapAction='urn:ServerLookup#checkUser'/>
+    <input>
+      <soap:body use='encoded' namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </input>
+    <output>
+      <soap:body use='encoded' namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </output>
+  </operation>   
+  
+   <operation name='editServer'>
+    <soap:operation soapAction='urn:ServerLookup#editServer'/>
+    <input>
+      <soap:body use='encoded' namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </input>
+    <output>
+      <soap:body use='encoded' namespace='urn:ServerLookup'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </output>
+  </operation>   
+  
+
+</binding>
+
+
+<service name='ServerLookupService'>
+
+  <port name='ServerLookupPort' binding='ServerLookupBinding'>
+    <soap:address location='http://localhost/soa/service/service.php'/>
+  </port>
+
+</service>
+
+</definitions>
